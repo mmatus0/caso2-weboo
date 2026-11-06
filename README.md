@@ -26,21 +26,6 @@ Sistema web para la clínica veterinaria PetCare (Chillán) que centraliza clien
 | Exception | `exception` | Errores propios + `GlobalExceptionHandler` |
 | Validation | `validation` | Anotación `@RutValido` (dígito verificador) |
 
-### Estados de una reserva
-
-```mermaid
-stateDiagram-v2
-  [*] --> PENDIENTE : POST /api/reservas
-  PENDIENTE --> CONFIRMADA : PATCH /confirmar 
-  PENDIENTE --> CANCELADA : PATCH /cancelar 
-  CONFIRMADA --> CANCELADA : PATCH /cancelar 
-  CONFIRMADA --> ATENDIDA : POST /atencion
-```
-
-envía correo al cliente mediante la API externa. Modificar una reserva (`PUT`) también notifica.
-
----
-
 ## 2. Estructura del repositorio
 
 ```
