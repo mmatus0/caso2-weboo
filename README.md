@@ -2,7 +2,7 @@
 
 Estudio de Caso 2 · Desarrollo Web Orientado a Objeto
 
-**Integrantes:** Gonzalo · María Zapata Fica
+**Integrantes:** Gonzalo Matus · María Zapata Fica
 
 Sistema web para la clínica veterinaria PetCare (Chillán) que centraliza clientes, mascotas, veterinarios, horas médicas e historial clínico. Está construido con **Spring Boot 3 + MySQL** y consume una **API externa en Node.js** que corre en un segundo equipo de la red y entrega medicamentos, geolocalización y envío de correos.
 
