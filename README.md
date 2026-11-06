@@ -10,21 +10,6 @@ Sistema web para la clínica veterinaria PetCare (Chillán) que centraliza clien
 
 ## 1. Arquitectura
 
-```mermaid
-flowchart LR
-    U[Navegador<br/>front HTML + JS] -->|fetch /api/...| S
-    subgraph EQ1[Equipo 1]
-      S[Spring Boot :8080<br/>Controller → Service → Repository]
-      DB[(MySQL :3306<br/>Docker)]
-      S -->|JPA| DB
-    end
-    subgraph EQ2[Equipo 2]
-      N[API externa Node :3000<br/>medicamentos · clínica · correos]
-    end
-    S -->|RestClient HTTP| N
-    N -->|SMTP| E[Ethereal / Gmail]
-```
-
 - El **navegador solo habla con Spring**. Spring hace de puente hacia la API Node (clase `ApiExternaClient`).
 - Si la API Node se cae, las reservas igual se confirman o cancelan; la respuesta indica que el correo no se pudo enviar.
 
@@ -41,17 +26,6 @@ flowchart LR
 | Exception | `exception` | Errores propios + `GlobalExceptionHandler` |
 | Validation | `validation` | Anotación `@RutValido` (dígito verificador) |
 
-### Modelo de datos
-
-```mermaid
-erDiagram
-  CLIENTE ||--o{ MASCOTA : tiene
-  MASCOTA ||--o{ RESERVA : agenda
-  VETERINARIO ||--o{ RESERVA : atiende
-  RESERVA ||--o| ATENCION : genera
-  ATENCION ||--o{ RECETA : prescribe
-```
-
 ### Estados de una reserva
 
 ```mermaid
@@ -63,7 +37,7 @@ stateDiagram-v2
   CONFIRMADA --> ATENDIDA : POST /atencion
 ```
 
-✉️ = envía correo al cliente mediante la API externa. Modificar una reserva (`PUT`) también notifica.
+envía correo al cliente mediante la API externa. Modificar una reserva (`PUT`) también notifica.
 
 ---
 
@@ -359,13 +333,3 @@ Todos los errores tienen la misma forma:
 | 404 | El registro no existe |
 | 409 | Duplicado (RUT, email, hora ocupada) o registro en uso |
 | 503 | La API externa Node no está disponible |
-
-## 8. Problemas frecuentes
-
-| Síntoma | Solución |
-|---|---|
-| `Communications link failure` al iniciar Spring | MySQL no está arriba: `docker compose ps` y esperar a que esté *healthy* |
-| Medicamentos / mapa responden 503 | Revisar que Node esté corriendo, la IP en `API_EXTERNA_URL` y el firewall del equipo 2 |
-| El correo no llega a la bandeja | Es lo esperado con Ethereal: abrir el link "ver correo" (`previewUrl`) |
-| Sin internet en la presentación | Usar `MAIL_MODE=simulado` en la API Node |
-| Cambié `data.sql` y no se refleja | `docker compose down -v && docker compose up -d` |
