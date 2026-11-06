@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: petcare-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: petcare
+      MYSQL_USER: petcare
+      MYSQL_PASSWORD: petcare123
+      TZ: America/Santiago
+    ports:
+      - "3306:3306"
+    volumes:
+      # Los scripts se ejecutan automáticamente SOLO la primera vez
+      # (cuando el volumen de datos está vacío), en orden alfabético.
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/data.sql:/docker-entrypoint-initdb.d/02-data.sql:ro
+      - petcare-data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot123"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # Panel web opcional para revisar las tablas: http://localhost:8081
+  # Sistema: MySQL | Servidor: mysql | Usuario: petcare | Clave: petcare123
+  adminer:
+    image: adminer
+    container_name: petcare-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+
+volumes:
+  petcare-data:
