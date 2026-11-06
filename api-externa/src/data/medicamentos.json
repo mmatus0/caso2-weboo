@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "nombre": "Amoxicilina con ácido clavulánico",
+    "categoria": "Antibiótico",
+    "presentaciones": ["Comprimidos", "Suspensión oral", "Inyectable"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Infecciones bacterianas de piel, tejidos blandos, vías respiratorias y urinarias.",
+    "requiereReceta": true,
+    "advertencias": "Puede causar molestias digestivas. Completar el tratamiento indicado."
+  },
+  {
+    "id": 2,
+    "nombre": "Enrofloxacino",
+    "categoria": "Antibiótico",
+    "presentaciones": ["Comprimidos", "Inyectable"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Infecciones bacterianas urinarias, respiratorias, de piel y digestivas.",
+    "requiereReceta": true,
+    "advertencias": "Evitar en animales en crecimiento. En gatos, dosis altas se asocian a daño de retina."
+  },
+  {
+    "id": 3,
+    "nombre": "Metronidazol",
+    "categoria": "Antibiótico / Antiprotozoario",
+    "presentaciones": ["Comprimidos", "Suspensión oral"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Diarreas de origen bacteriano y giardiasis.",
+    "requiereReceta": true,
+    "advertencias": "Sabor amargo; puede generar salivación. Uso prolongado puede causar signos neurológicos."
+  },
+  {
+    "id": 4,
+    "nombre": "Meloxicam",
+    "categoria": "Antiinflamatorio no esteroidal (AINE)",
+    "presentaciones": ["Suspensión oral", "Comprimidos", "Inyectable"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Dolor e inflamación musculoesquelética y postoperatoria.",
+    "requiereReceta": true,
+    "advertencias": "No combinar con otros AINE ni corticoides. Precaución en pacientes renales o deshidratados."
+  },
+  {
+    "id": 5,
+    "nombre": "Carprofeno",
+    "categoria": "Antiinflamatorio no esteroidal (AINE)",
+    "presentaciones": ["Comprimidos", "Inyectable"],
+    "especies": ["Perro"],
+    "uso": "Dolor por artrosis y dolor postoperatorio.",
+    "requiereReceta": true,
+    "advertencias": "No usar de forma prolongada en gatos. No combinar con otros AINE."
+  },
+  {
+    "id": 6,
+    "nombre": "Tramadol",
+    "categoria": "Analgésico opioide",
+    "presentaciones": ["Comprimidos", "Gotas"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Dolor moderado a severo, solo o junto a un AINE.",
+    "requiereReceta": true,
+    "advertencias": "Puede causar sedación. Medicamento controlado."
+  },
+  {
+    "id": 7,
+    "nombre": "Gabapentina",
+    "categoria": "Analgésico / Anticonvulsivante",
+    "presentaciones": ["Cápsulas", "Solución oral"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Dolor neuropático y crónico; reducción de estrés antes de visitas veterinarias.",
+    "requiereReceta": true,
+    "advertencias": "Puede causar somnolencia y descoordinación. No suspender bruscamente."
+  },
+  {
+    "id": 8,
+    "nombre": "Prednisolona",
+    "categoria": "Corticoide",
+    "presentaciones": ["Comprimidos", "Solución oral"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Procesos alérgicos, inflamatorios e inmunomediados.",
+    "requiereReceta": true,
+    "advertencias": "No combinar con AINE. Retirar de forma gradual tras tratamientos largos."
+  },
+  {
+    "id": 9,
+    "nombre": "Cetirizina",
+    "categoria": "Antihistamínico",
+    "presentaciones": ["Comprimidos", "Jarabe"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Prurito y reacciones alérgicas leves.",
+    "requiereReceta": false,
+    "advertencias": "Puede causar somnolencia leve."
+  },
+  {
+    "id": 10,
+    "nombre": "Maropitant",
+    "categoria": "Antiemético",
+    "presentaciones": ["Comprimidos", "Inyectable"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Prevención y tratamiento de vómitos y mareo por viajes.",
+    "requiereReceta": true,
+    "advertencias": "Descartar obstrucción intestinal antes de usar."
+  },
+  {
+    "id": 11,
+    "nombre": "Omeprazol",
+    "categoria": "Protector gástrico",
+    "presentaciones": ["Cápsulas", "Pasta oral"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Gastritis, úlceras y protección gástrica durante tratamientos con AINE.",
+    "requiereReceta": false,
+    "advertencias": "Administrar en ayunas para mejor efecto."
+  },
+  {
+    "id": 12,
+    "nombre": "Praziquantel",
+    "categoria": "Antiparasitario interno",
+    "presentaciones": ["Comprimidos", "Pipeta"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Eliminación de tenias (cestodos).",
+    "requiereReceta": false,
+    "advertencias": "Suele combinarse con otros antiparasitarios para cubrir nematodos."
+  },
+  {
+    "id": 13,
+    "nombre": "Pirantel",
+    "categoria": "Antiparasitario interno",
+    "presentaciones": ["Comprimidos", "Suspensión oral"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Eliminación de gusanos redondos (nematodos) intestinales.",
+    "requiereReceta": false,
+    "advertencias": "Repetir según calendario de desparasitación indicado."
+  },
+  {
+    "id": 14,
+    "nombre": "Fenbendazol",
+    "categoria": "Antiparasitario interno",
+    "presentaciones": ["Suspensión oral", "Gránulos"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Nematodos intestinales y giardiasis.",
+    "requiereReceta": false,
+    "advertencias": "Requiere administración por varios días consecutivos."
+  },
+  {
+    "id": 15,
+    "nombre": "Fipronil",
+    "categoria": "Antiparasitario externo",
+    "presentaciones": ["Pipeta", "Spray"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Control de pulgas, garrapatas y piojos.",
+    "requiereReceta": false,
+    "advertencias": "No usar en conejos. Evitar bañar a la mascota 48 horas antes y después."
+  },
+  {
+    "id": 16,
+    "nombre": "Selamectina",
+    "categoria": "Antiparasitario interno y externo",
+    "presentaciones": ["Pipeta"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Pulgas, ácaros del oído, sarna y prevención del gusano del corazón.",
+    "requiereReceta": true,
+    "advertencias": "Aplicar sobre piel seca en la base del cuello."
+  },
+  {
+    "id": 17,
+    "nombre": "Ivermectina",
+    "categoria": "Antiparasitario",
+    "presentaciones": ["Comprimidos", "Inyectable"],
+    "especies": ["Perro"],
+    "uso": "Sarna y prevención del gusano del corazón.",
+    "requiereReceta": true,
+    "advertencias": "Riesgo grave en razas con mutación MDR1 (Collie, Pastor australiano, Pastor de Shetland)."
+  },
+  {
+    "id": 18,
+    "nombre": "Permetrina",
+    "categoria": "Antiparasitario externo",
+    "presentaciones": ["Pipeta", "Shampoo"],
+    "especies": ["Perro"],
+    "uso": "Repelente y control de pulgas, garrapatas y mosquitos en perros.",
+    "requiereReceta": false,
+    "advertencias": "ALTAMENTE TÓXICO PARA GATOS. No usar en gatos ni en perros que conviven en contacto estrecho con gatos."
+  },
+  {
+    "id": 19,
+    "nombre": "Clorhexidina",
+    "categoria": "Antiséptico",
+    "presentaciones": ["Solución tópica", "Shampoo"],
+    "especies": ["Perro", "Gato", "Ave", "Conejo"],
+    "uso": "Limpieza y desinfección de heridas y piel.",
+    "requiereReceta": false,
+    "advertencias": "No aplicar en ojos ni oídos con tímpano dañado."
+  },
+  {
+    "id": 20,
+    "nombre": "Ketoconazol",
+    "categoria": "Antifúngico",
+    "presentaciones": ["Shampoo", "Comprimidos"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Infecciones por hongos y levaduras en piel (dermatofitosis, Malassezia).",
+    "requiereReceta": true,
+    "advertencias": "La forma oral puede afectar el hígado; requiere control veterinario."
+  },
+  {
+    "id": 21,
+    "nombre": "Furosemida",
+    "categoria": "Diurético",
+    "presentaciones": ["Comprimidos", "Inyectable"],
+    "especies": ["Perro", "Gato"],
+    "uso": "Edema y congestión por insuficiencia cardíaca.",
+    "requiereReceta": true,
+    "advertencias": "Asegurar acceso permanente a agua. Puede alterar electrolitos."
+  },
+  {
+    "id": 22,
+    "nombre": "Pimobendan",
+    "categoria": "Cardiológico",
+    "presentaciones": ["Comprimidos masticables", "Cápsulas"],
+    "especies": ["Perro"],
+    "uso": "Insuficiencia cardíaca congestiva por enfermedad valvular o cardiomiopatía.",
+    "requiereReceta": true,
+    "advertencias": "Administrar con el estómago vacío."
+  }
+]
