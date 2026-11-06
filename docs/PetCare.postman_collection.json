@@ -1,0 +1,534 @@
+{
+  "info": {
+    "name": "PetCare API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Estudio de Caso 2 - Desarrollo Web Orientado a Objeto (UBB). Ajustar las variables spring y node con las IP de cada equipo."
+  },
+  "variable": [
+    {
+      "key": "spring",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "node",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Clientes",
+      "item": [
+        {
+          "name": "Listar clientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/clientes"
+          }
+        },
+        {
+          "name": "Buscar clientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/clientes?buscar=rojas"
+          }
+        },
+        {
+          "name": "Obtener cliente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/clientes/1"
+          }
+        },
+        {
+          "name": "Crear cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/clientes",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rut\": \"11111111-1\",\n  \"nombre\": \"Ana Torres Muñoz\",\n  \"email\": \"ana.torres@correo.cl\",\n  \"telefono\": \"+56911112222\",\n  \"direccion\": \"Av. Brasil 100, Chillán\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Crear cliente inválido (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/clientes",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rut\": \"12345678-9\",\n  \"nombre\": \"\",\n  \"email\": \"no-es-correo\",\n  \"telefono\": \"123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Modificar cliente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/clientes/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rut\": \"15432876-9\",\n  \"nombre\": \"Camila Rojas Soto\",\n  \"email\": \"camila.rojas@correo.cl\",\n  \"telefono\": \"+56912345678\",\n  \"direccion\": \"Av. Libertad 400, Chillán\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Mascotas del cliente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/clientes/1/mascotas"
+          }
+        },
+        {
+          "name": "Eliminar cliente",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{spring}}/api/clientes/6"
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Mascotas",
+      "item": [
+        {
+          "name": "Listar mascotas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/mascotas"
+          }
+        },
+        {
+          "name": "Filtrar por especie",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/mascotas?especie=Gato"
+          }
+        },
+        {
+          "name": "Obtener mascota",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/mascotas/1"
+          }
+        },
+        {
+          "name": "Crear mascota",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/mascotas",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Bruno\",\n  \"especie\": \"Perro\",\n  \"raza\": \"Beagle\",\n  \"fechaNacimiento\": \"2022-04-10\",\n  \"peso\": 11.5,\n  \"clienteId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Modificar mascota",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/mascotas/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Luna\",\n  \"especie\": \"Perro\",\n  \"raza\": \"Labrador Retriever\",\n  \"fechaNacimiento\": \"2021-03-14\",\n  \"peso\": 29.1,\n  \"clienteId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Historial médico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/mascotas/3/historial"
+          }
+        },
+        {
+          "name": "Reservas de la mascota",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/mascotas/1/reservas"
+          }
+        },
+        {
+          "name": "Eliminar mascota",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{spring}}/api/mascotas/9"
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Veterinarios",
+      "item": [
+        {
+          "name": "Listar veterinarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/veterinarios"
+          }
+        },
+        {
+          "name": "Solo activos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/veterinarios?soloActivos=true"
+          }
+        },
+        {
+          "name": "Obtener veterinario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/veterinarios/1"
+          }
+        },
+        {
+          "name": "Crear veterinario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/veterinarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Dr. Tomás Vergara\",\n  \"especialidad\": \"Traumatología\",\n  \"email\": \"tomas.vergara@petcare.cl\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Desactivar veterinario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/veterinarios/4",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Dr. Tomás Vergara\",\n  \"especialidad\": \"Traumatología\",\n  \"email\": \"tomas.vergara@petcare.cl\",\n  \"activo\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "Disponibilidad del día",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/veterinarios/1/disponibilidad?fecha=2026-11-20"
+          }
+        },
+        {
+          "name": "Eliminar veterinario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{spring}}/api/veterinarios/4"
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Reservas",
+      "item": [
+        {
+          "name": "Listar reservas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/reservas"
+          }
+        },
+        {
+          "name": "Filtrar reservas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/reservas?fecha=2026-11-20&estado=PENDIENTE"
+          }
+        },
+        {
+          "name": "Obtener reserva",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/reservas/5"
+          }
+        },
+        {
+          "name": "Solicitar hora",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/reservas",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mascotaId\": 1,\n  \"veterinarioId\": 1,\n  \"fecha\": \"2026-11-27\",\n  \"hora\": \"10:00\",\n  \"motivo\": \"Control anual\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Hora duplicada (409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/reservas",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mascotaId\": 3,\n  \"veterinarioId\": 1,\n  \"fecha\": \"2026-11-20\",\n  \"hora\": \"09:00\",\n  \"motivo\": \"Prueba de duplicado\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Hora fuera de bloque (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/reservas",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mascotaId\": 3,\n  \"veterinarioId\": 1,\n  \"fecha\": \"2026-11-27\",\n  \"hora\": \"10:30\",\n  \"motivo\": \"Prueba de bloque\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Modificar reserva",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/reservas/6",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mascotaId\": 8,\n  \"veterinarioId\": 2,\n  \"fecha\": \"2026-11-20\",\n  \"hora\": \"11:00\",\n  \"motivo\": \"Revisión de herida en pata\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Confirmar reserva",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{spring}}/api/reservas/6/confirmar"
+          }
+        },
+        {
+          "name": "Cancelar reserva",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{spring}}/api/reservas/7/cancelar"
+          }
+        },
+        {
+          "name": "Registrar atención",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{spring}}/api/reservas/5/atencion",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"diagnostico\": \"Paciente sano\",\n  \"tratamiento\": \"Vacuna antirrábica aplicada\",\n  \"observaciones\": \"Próxima dosis en 1 año\",\n  \"recetas\": [\n    {\n      \"medicamento\": \"Meloxicam\",\n      \"dosis\": \"0.5 ml\",\n      \"frecuencia\": \"Cada 24 horas\",\n      \"dias\": 2\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Obtener atención",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/atenciones/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Integración externa (vía Spring)",
+      "item": [
+        {
+          "name": "Buscar medicamentos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/externo/medicamentos?nombre=amoxi"
+          }
+        },
+        {
+          "name": "Detalle medicamento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/externo/medicamentos/4"
+          }
+        },
+        {
+          "name": "Ubicación clínica",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/externo/clinica"
+          }
+        },
+        {
+          "name": "Distancia a la clínica",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/externo/clinica/distancia?lat=-36.8270&lng=-73.0498"
+          }
+        },
+        {
+          "name": "Historial de correos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{spring}}/api/externo/notificaciones"
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. API Node directa (equipo 2)",
+      "item": [
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{node}}/health"
+          }
+        },
+        {
+          "name": "Buscar medicamentos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{node}}/api/medicamentos?nombre=meloxicam"
+          }
+        },
+        {
+          "name": "Medicamento por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{node}}/api/medicamentos/1"
+          }
+        },
+        {
+          "name": "Ubicación clínica",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{node}}/api/clinica/ubicacion"
+          }
+        },
+        {
+          "name": "Distancia",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{node}}/api/clinica/distancia?lat=-36.6&lng=-72.1"
+          }
+        },
+        {
+          "name": "Enviar correo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{node}}/api/notificaciones/email",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"para\": \"camila.rojas@correo.cl\",\n  \"nombreCliente\": \"Camila Rojas Soto\",\n  \"tipo\": \"CONFIRMACION\",\n  \"reserva\": {\n    \"id\": 5,\n    \"fecha\": \"20-11-2026\",\n    \"hora\": \"09:00\",\n    \"mascota\": \"Michi\",\n    \"veterinario\": \"Dra. Paula Herrera\",\n    \"motivo\": \"Vacuna antirrábica\"\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "Historial correos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{node}}/api/notificaciones"
+          }
+        }
+      ]
+    }
+  ]
+}
