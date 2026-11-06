@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetCare · Gestión veterinaria</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">🐾 PetCare <span>Clínica veterinaria · Chillán</span></div>
+  <nav>
+    <button data-seccion="inicio" class="activo">Inicio</button>
+    <button data-seccion="clientes">Clientes</button>
+    <button data-seccion="mascotas">Mascotas</button>
+    <button data-seccion="veterinarios">Veterinarios</button>
+    <button data-seccion="reservas">Horas médicas</button>
+    <button data-seccion="ubicacion">Ubicación</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ==================== INICIO ==================== -->
+  <section id="inicio" class="seccion activa">
+    <h2>Resumen</h2>
+    <p class="subtitulo">Estado general de la clínica.</p>
+    <div class="kpis" id="kpis"></div>
+    <div class="tarjeta">
+      <h3>Próximas horas (pendientes y confirmadas)</h3>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>Fecha</th><th>Hora</th><th>Mascota</th><th>Cliente</th><th>Veterinario/a</th><th>Estado</th></tr></thead>
+        <tbody id="tabla-proximas"></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ==================== CLIENTES ==================== -->
+  <section id="clientes" class="seccion">
+    <h2>Clientes</h2>
+    <p class="subtitulo">Registro de dueños y sus datos de contacto.</p>
+
+    <div class="tarjeta">
+      <h3 id="cliente-form-titulo">Nuevo cliente</h3>
+      <form id="cliente-form" novalidate>
+        <input type="hidden" name="id">
+        <div class="grid-form">
+          <label>RUT <input name="rut" placeholder="12345678-5" required></label>
+          <label>Nombre completo <input name="nombre" required></label>
+          <label>Email <input name="email" type="email" required></label>
+          <label>Teléfono <input name="telefono" placeholder="+56912345678" required></label>
+          <label class="ancho">Dirección <input name="direccion"></label>
+        </div>
+        <div class="form-acciones">
+          <button type="button" class="btn sec" id="cliente-cancelar">Limpiar</button>
+          <button type="submit" class="btn">Guardar cliente</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="tarjeta">
+      <div class="barra">
+        <label>Buscar <input id="cliente-buscar" placeholder="Nombre, RUT o email"></label>
+      </div>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>RUT</th><th>Nombre</th><th>Email</th><th>Teléfono</th><th></th></tr></thead>
+        <tbody id="tabla-clientes"></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ==================== MASCOTAS ==================== -->
+  <section id="mascotas" class="seccion">
+    <h2>Mascotas</h2>
+    <p class="subtitulo">Pacientes asociados a cada cliente e historial médico.</p>
+
+    <div class="tarjeta">
+      <h3 id="mascota-form-titulo">Nueva mascota</h3>
+      <form id="mascota-form" novalidate>
+        <input type="hidden" name="id">
+        <div class="grid-form">
+          <label>Dueño <select name="clienteId" required></select></label>
+          <label>Nombre <input name="nombre" required></label>
+          <label>Especie
+            <input name="especie" list="lista-especies" required>
+            <datalist id="lista-especies">
+              <option>Perro</option><option>Gato</option><option>Ave</option><option>Conejo</option><option>Hámster</option>
+            </datalist>
+          </label>
+          <label>Raza <input name="raza"></label>
+          <label>Fecha de nacimiento <input name="fechaNacimiento" type="date"></label>
+          <label>Peso (kg) <input name="peso" type="number" step="0.01" min="0.01"></label>
+        </div>
+        <div class="form-acciones">
+          <button type="button" class="btn sec" id="mascota-cancelar">Limpiar</button>
+          <button type="submit" class="btn">Guardar mascota</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="tarjeta">
+      <div class="barra">
+        <label>Especie
+          <select id="mascota-filtro-especie">
+            <option value="">Todas</option><option>Perro</option><option>Gato</option><option>Ave</option><option>Conejo</option>
+          </select>
+        </label>
+      </div>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>Nombre</th><th>Especie</th><th>Raza</th><th>Edad</th><th>Peso</th><th>Dueño</th><th></th></tr></thead>
+        <tbody id="tabla-mascotas"></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ==================== VETERINARIOS ==================== -->
+  <section id="veterinarios" class="seccion">
+    <h2>Veterinarios</h2>
+    <p class="subtitulo">Profesionales de la clínica y su disponibilidad.</p>
+
+    <div class="grid-2">
+      <div class="tarjeta">
+        <h3 id="vet-form-titulo">Nuevo veterinario</h3>
+        <form id="vet-form" novalidate>
+          <input type="hidden" name="id">
+          <div class="grid-form">
+            <label class="ancho">Nombre <input name="nombre" required></label>
+            <label>Especialidad <input name="especialidad" required></label>
+            <label>Email <input name="email" type="email" required></label>
+            <label>Estado
+              <select name="activo"><option value="true">Activo</option><option value="false">Inactivo</option></select>
+            </label>
+          </div>
+          <div class="form-acciones">
+            <button type="button" class="btn sec" id="vet-cancelar">Limpiar</button>
+            <button type="submit" class="btn">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="tarjeta">
+        <h3>Disponibilidad por día</h3>
+        <div class="barra">
+          <label>Veterinario <select id="disp-vet"></select></label>
+          <label>Fecha <input id="disp-fecha" type="date"></label>
+        </div>
+        <div id="disp-bloques" class="bloques"></div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>Nombre</th><th>Especialidad</th><th>Email</th><th>Estado</th><th></th></tr></thead>
+        <tbody id="tabla-vets"></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ==================== RESERVAS ==================== -->
+  <section id="reservas" class="seccion">
+    <h2>Horas médicas</h2>
+    <p class="subtitulo">Solicitar, confirmar, cancelar y atender reservas. Bloques de 1 hora entre 09:00 y 18:00.</p>
+
+    <div class="tarjeta">
+      <h3 id="reserva-form-titulo">Solicitar hora</h3>
+      <form id="reserva-form" novalidate>
+        <input type="hidden" name="id">
+        <input type="hidden" name="hora">
+        <div class="grid-form">
+          <label>Cliente <select id="reserva-cliente" required></select></label>
+          <label>Mascota <select name="mascotaId" required></select></label>
+          <label>Veterinario/a <select name="veterinarioId" required></select></label>
+          <label>Fecha <input name="fecha" type="date" required></label>
+          <label class="ancho">Motivo <input name="motivo" placeholder="Ej: control anual, vacunas..." required></label>
+        </div>
+        <p class="muted" style="margin:16px 0 8px">Elige un bloque libre:</p>
+        <div id="reserva-bloques" class="bloques"><span class="muted">Selecciona veterinario y fecha.</span></div>
+        <div class="form-acciones">
+          <button type="button" class="btn sec" id="reserva-cancelar-edicion">Limpiar</button>
+          <button type="submit" class="btn">Guardar reserva</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="tarjeta">
+      <div class="barra">
+        <label>Fecha <input type="date" id="filtro-fecha"></label>
+        <label>Estado
+          <select id="filtro-estado">
+            <option value="">Todos</option>
+            <option>PENDIENTE</option><option>CONFIRMADA</option><option>CANCELADA</option><option>ATENDIDA</option>
+          </select>
+        </label>
+        <label>Veterinario/a <select id="filtro-vet"></select></label>
+        <button class="btn sec" id="filtro-limpiar">Quitar filtros</button>
+      </div>
+      <div class="tabla-wrap"><table>
+        <thead><tr><th>#</th><th>Fecha</th><th>Hora</th><th>Mascota</th><th>Cliente</th><th>Veterinario/a</th><th>Motivo</th><th>Estado</th><th></th></tr></thead>
+        <tbody id="tabla-reservas"></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ==================== UBICACIÓN ==================== -->
+  <section id="ubicacion" class="seccion">
+    <h2>Ubicación de la clínica</h2>
+    <p class="subtitulo">Datos entregados por la API externa de geolocalización.</p>
+    <div class="grid-2">
+      <div class="tarjeta" id="clinica-info"><p class="muted">Cargando...</p></div>
+      <div class="tarjeta"><div id="mapa"></div></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================== MODAL GENÉRICO ==================== -->
+<div class="modal-fondo" id="modal">
+  <div class="modal">
+    <div class="modal-cabecera">
+      <h3 id="modal-titulo"></h3>
+      <button class="cerrar" id="modal-cerrar" aria-label="Cerrar">×</button>
+    </div>
+    <div id="modal-cuerpo"></div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
