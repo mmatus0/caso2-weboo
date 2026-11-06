@@ -1,6 +1,6 @@
 # PetCare – Sistema de Gestión de Atención Veterinaria
 
-Estudio de Caso 2 · Desarrollo Web Orientado a Objeto · Universidad del Bío-Bío
+Estudio de Caso 2 · Desarrollo Web Orientado a Objeto
 
 **Integrantes:** Gonzalo · María Zapata Fica
 
