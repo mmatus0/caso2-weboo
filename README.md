@@ -1,4 +1,4 @@
-# 🐾 PetCare – Sistema de Gestión de Atención Veterinaria
+# PetCare – Sistema de Gestión de Atención Veterinaria
 
 Estudio de Caso 2 · Desarrollo Web Orientado a Objeto · Universidad del Bío-Bío
 
@@ -57,9 +57,9 @@ erDiagram
 ```mermaid
 stateDiagram-v2
   [*] --> PENDIENTE : POST /api/reservas
-  PENDIENTE --> CONFIRMADA : PATCH /confirmar ✉️
-  PENDIENTE --> CANCELADA : PATCH /cancelar ✉️
-  CONFIRMADA --> CANCELADA : PATCH /cancelar ✉️
+  PENDIENTE --> CONFIRMADA : PATCH /confirmar 
+  PENDIENTE --> CANCELADA : PATCH /cancelar 
+  CONFIRMADA --> CANCELADA : PATCH /cancelar 
   CONFIRMADA --> ATENDIDA : POST /atencion
 ```
 
